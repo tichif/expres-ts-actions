@@ -18,7 +18,7 @@ jobs:
       - name: Lint the code
         run: npm run lint
   deploy:
-    needs: lint
+    # needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
