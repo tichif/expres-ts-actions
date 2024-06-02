@@ -17,7 +17,7 @@ jobs:
         run: npm ci
       - name: Lint the code
         run: npm run lint
-  build:
+  deploy:
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -32,16 +32,18 @@ jobs:
         with:
           name: dist-files
           path: dist
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-files
-          path: ./dist
-      - name: Output content
-        run: ls
       - name: Deploy Website
         run: node ./dist
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download Artifact
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: dist-files
+  #         path: ./dist
+  #     - name: Output content
+  #       run: ls
+  #     - name: Deploy Website
+  #       run: node ./dist
